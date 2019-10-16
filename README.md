@@ -2,7 +2,7 @@
 
 ### Viewing a prototype
 * Clone this repo
-* Run `npm install` and then `webpack run js`
+* Run `npm install` and then `npm run js`
 * Open `<new_prototype>/public/index.html` in a browser
 
 ### Adding a new prototype

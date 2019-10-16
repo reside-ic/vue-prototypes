@@ -1,9 +1,13 @@
 <template>
     <div>
-        <b-progress v-for="(bar, index) in bars" :key="index" class="my-2" :max="1">
-            <b-progress-bar :value="bar.value"
-                            :style="{background: bar.color}"></b-progress-bar>
-        </b-progress>
+        <div class="my-2" :class="bar.value === 0 ? 'not-started' : bar.value === 1 ? 'finished' : 'in-progress'"
+             v-for="(bar, index) in bars" :key="index">
+            <span class="help-text">{{bar.name}}{{bar.value > 0 && bar.helpText ? ": " + bar.helpText: ""}}</span>
+            <b-progress :max="1">
+                <b-progress-bar :value="bar.value">
+                </b-progress-bar>
+            </b-progress>
+        </div>
     </div>
 </template>
 
@@ -32,7 +36,11 @@
                 return this.phases.length
             },
             bars: function () {
-                return this.phases.map(p => ({value: p.numerator / p.denominator, color: p.color}));
+                return this.phases.map(p => ({
+                    value: p.numerator / p.denominator,
+                    name: p.name,
+                    helpText: p.helpText
+                }));
             }
         },
         components: {

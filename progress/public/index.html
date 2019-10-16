@@ -4,14 +4,21 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
     <title>Progress prototype</title>
+    <style>
+        .in-progress .progress-bar {
+            background: #e31837
+        }
+        .finished .progress-bar{
+            background: #6e0a19
+        }
+        .not-started .help-text, .not-started .name {
+            color: #e5e5e5;
+        }
+    </style>
 </head>
 <body>
 <div id="app" class="container">
-    <div class="my-5">
-        <h3>Phases in one bar</h3>
-        <progress-with-phases></progress-with-phases>
-    </div>
-    <div class="my-5">
+    <div class="my-5 py-5">
         <h3>Multiple bars</h3>
         <multiple-progress-bars></multiple-progress-bars>
     </div>

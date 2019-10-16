@@ -11,18 +11,18 @@
 
     import Vue from "vue";
     import {BProgress, BProgressBar} from "bootstrap-vue";
-    import {Bar, Phase, phases} from "./types";
+    import {BarWithColour, PhaseWithColour, phasesWithColours} from "./types";
 
     interface Data {
-        phases: Phase[],
+        phases: PhaseWithColour[],
         currentPhase: number,
         interval: number
     }
 
-    export default Vue.extend<Data, {}, { max: number, bars: Bar[], numPhases: number }>({
+    export default Vue.extend<Data, {}, { max: number, bars: BarWithColour[], numPhases: number }>({
         data() {
             return {
-                phases: phases,
+                phases: phasesWithColours,
                 interval: 0,
                 currentPhase: 0
             }
@@ -32,7 +32,7 @@
                 return this.phases.length;
             },
             max: function () {
-                return this.phases.reduce((currentVal: number, phase: Phase) => currentVal + phase.denominator, 0);
+                return this.phases.reduce((currentVal: number, phase: PhaseWithColour) => currentVal + phase.denominator, 0);
             },
             bars: function () {
                 return this.phases.map(p => ({value: p.numerator / (this.numPhases * p.denominator), color: p.color}));
