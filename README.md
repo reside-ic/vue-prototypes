@@ -1,6 +1,11 @@
 ## vue prototypes
 
-### Directory structure
+### Viewing a prototype
+* Clone this repo
+* Run `npm install` and then `webpack run js`
+* Open `<new_prototype>/public/index.html` in a browser
+
+### Adding a new prototype
 Each new prototype should get it's own directory. The structure of this should follow this pattern:
  
 ```
