@@ -77,11 +77,11 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/progress/public/js/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./progress/progress.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./progress/index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -3106,6 +3106,18 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
+/***/ "./progress/index.ts":
+/*!***************************!*\
+  !*** ./progress/index.ts ***!
+  \***************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _progressWithPhases_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./progressWithPhases.vue */ \"./progress/progressWithPhases.vue\");\n/* harmony import */ var _multipleProgressBars_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./multipleProgressBars.vue */ \"./progress/multipleProgressBars.vue\");\n\n\n\nnew vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n    el: \"#app\",\n    components: {\n        ProgressWithPhases: _progressWithPhases_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n        MultipleProgressBars: _multipleProgressBars_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n    }\n});\n\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wcm9ncmVzcy9pbmRleC50cz9kYjZlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQXNCO0FBQ29DO0FBQ0k7QUFFOUQsSUFBSSwyQ0FBRyxDQUFDO0lBQ0osRUFBRSxFQUFFLE1BQU07SUFDVixVQUFVLEVBQUU7UUFDUixrQkFBa0I7UUFDbEIsb0JBQW9CO0tBQ3ZCO0NBQ0osQ0FBQyxDQUFDIiwiZmlsZSI6Ii4vcHJvZ3Jlc3MvaW5kZXgudHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgVnVlIGZyb20gXCJ2dWVcIjtcbmltcG9ydCBQcm9ncmVzc1dpdGhQaGFzZXMgZnJvbSBcIi4vcHJvZ3Jlc3NXaXRoUGhhc2VzLnZ1ZVwiO1xuaW1wb3J0IE11bHRpcGxlUHJvZ3Jlc3NCYXJzIGZyb20gXCIuL211bHRpcGxlUHJvZ3Jlc3NCYXJzLnZ1ZVwiO1xuXG5uZXcgVnVlKHtcbiAgICBlbDogXCIjYXBwXCIsXG4gICAgY29tcG9uZW50czoge1xuICAgICAgICBQcm9ncmVzc1dpdGhQaGFzZXMsXG4gICAgICAgIE11bHRpcGxlUHJvZ3Jlc3NCYXJzXG4gICAgfVxufSk7XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./progress/index.ts\n");
+
+/***/ }),
+
 /***/ "./progress/multipleProgressBars.vue":
 /*!*******************************************!*\
   !*** ./progress/multipleProgressBars.vue ***!
@@ -3139,18 +3151,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_multipleProgressBars_vue_vue_type_template_id_065f5541___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../node_modules/vue-loader/lib??vue-loader-options!./multipleProgressBars.vue?vue&type=template&id=065f5541& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./progress/multipleProgressBars.vue?vue&type=template&id=065f5541&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_multipleProgressBars_vue_vue_type_template_id_065f5541___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_multipleProgressBars_vue_vue_type_template_id_065f5541___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wcm9ncmVzcy9tdWx0aXBsZVByb2dyZXNzQmFycy52dWU/OTkyNiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEiLCJmaWxlIjoiLi9wcm9ncmVzcy9tdWx0aXBsZVByb2dyZXNzQmFycy52dWU/dnVlJnR5cGU9dGVtcGxhdGUmaWQ9MDY1ZjU1NDEmLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSBcIi0hLi4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL2xvYWRlcnMvdGVtcGxhdGVMb2FkZXIuanM/P3Z1ZS1sb2FkZXItb3B0aW9ucyEuLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvaW5kZXguanM/P3Z1ZS1sb2FkZXItb3B0aW9ucyEuL211bHRpcGxlUHJvZ3Jlc3NCYXJzLnZ1ZT92dWUmdHlwZT10ZW1wbGF0ZSZpZD0wNjVmNTU0MSZcIiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./progress/multipleProgressBars.vue?vue&type=template&id=065f5541&\n");
-
-/***/ }),
-
-/***/ "./progress/progress.ts":
-/*!******************************!*\
-  !*** ./progress/progress.ts ***!
-  \******************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _progressWithPhases_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./progressWithPhases.vue */ \"./progress/progressWithPhases.vue\");\n/* harmony import */ var _multipleProgressBars_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./multipleProgressBars.vue */ \"./progress/multipleProgressBars.vue\");\n\n\n\nnew vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n    el: \"#app\",\n    components: {\n        ProgressWithPhases: _progressWithPhases_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n        MultipleProgressBars: _multipleProgressBars_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n    }\n});\n\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wcm9ncmVzcy9wcm9ncmVzcy50cz8yNGJhIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQXNCO0FBQ29DO0FBQ0k7QUFFOUQsSUFBSSwyQ0FBRyxDQUFDO0lBQ0osRUFBRSxFQUFFLE1BQU07SUFDVixVQUFVLEVBQUU7UUFDUixrQkFBa0I7UUFDbEIsb0JBQW9CO0tBQ3ZCO0NBQ0osQ0FBQyxDQUFDIiwiZmlsZSI6Ii4vcHJvZ3Jlc3MvcHJvZ3Jlc3MudHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgVnVlIGZyb20gXCJ2dWVcIjtcbmltcG9ydCBQcm9ncmVzc1dpdGhQaGFzZXMgZnJvbSBcIi4vcHJvZ3Jlc3NXaXRoUGhhc2VzLnZ1ZVwiO1xuaW1wb3J0IE11bHRpcGxlUHJvZ3Jlc3NCYXJzIGZyb20gXCIuL211bHRpcGxlUHJvZ3Jlc3NCYXJzLnZ1ZVwiO1xuXG5uZXcgVnVlKHtcbiAgICBlbDogXCIjYXBwXCIsXG4gICAgY29tcG9uZW50czoge1xuICAgICAgICBQcm9ncmVzc1dpdGhQaGFzZXMsXG4gICAgICAgIE11bHRpcGxlUHJvZ3Jlc3NCYXJzXG4gICAgfVxufSk7XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./progress/progress.ts\n");
 
 /***/ }),
 

@@ -3,11 +3,12 @@ var webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-    entry: './progress/progress.ts',
+    entry: {
+        "progress/public/js/index": './progress/index.ts'
+    },
     output: {
-        path: path.resolve(__dirname, './progress/public/js'),
-        publicPath: '/progress/public/js/',
-        filename: 'progress.js'
+        filename: '[name].js',
+        path: path.resolve(__dirname),
     },
     mode: 'development',
     module: {
