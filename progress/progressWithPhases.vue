@@ -52,9 +52,9 @@
                 }
                 if (self.currentPhase == self.numPhases) {
                     clearInterval(self.interval);
+                } else {
+                    self.phases[self.currentPhase].numerator += 1;
                 }
-
-                self.phases[self.currentPhase].numerator += 1;
             }, 50)
         }
     });

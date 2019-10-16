@@ -1,8 +1,8 @@
 <template>
     <div>
-        <b-progress v-for="(bar, index) in bars" :key="index" class="my-2" :max="1">
-            <b-progress-bar :value="bar.value"
-                            :style="{background: bar.color}"></b-progress-bar>
+        Step {{currentPhase + 1}} of {{numPhases}}
+        <b-progress v-if="bar.value > 0 && (bar.value < 1 || index === numPhases - 1)" v-for="(bar, index) in bars" :key="index" class="my-2" :max="1">
+            <b-progress-bar :value="bar.value"></b-progress-bar>
         </b-progress>
     </div>
 </template>
@@ -49,6 +49,7 @@
                 }
                 if (self.currentPhase == self.numPhases) {
                     clearInterval(self.interval);
+                    self.currentPhase -= 1;
                 } else {
                     self.phases[self.currentPhase].numerator += 1;
                 }
