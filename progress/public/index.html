@@ -8,11 +8,37 @@
         .in-progress .progress-bar {
             background: #e31837
         }
-        .finished .progress-bar{
+
+        .finished .progress-bar {
             background: #6e0a19
         }
+
         .not-started .help-text, .not-started .name {
             color: #e5e5e5;
+        }
+
+        .tick {
+            margin-left: 5px;
+            margin-bottom: 5px;
+            margin-top: -5px;
+            height: 20px;
+            width: 20px;
+        }
+
+        path {
+            transform: scale(0.2);
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 2s linear forwards;
+        }
+
+        @keyframes dash {
+            from {
+                stroke-dashoffset: 1000;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
         }
     </style>
 </head>
