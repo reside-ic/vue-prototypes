@@ -16,10 +16,10 @@
 
     import Vue from "vue";
     import {BProgress, BProgressBar} from "bootstrap-vue";
-    import {Phase, phases} from "./types";
+    import {ProgressPhase, phases} from "./types";
 
     interface Data {
-        phases: Phase[],
+        phases: ProgressPhase[],
         currentPhase: number,
         interval: number
     }
@@ -46,16 +46,21 @@
 
             this.interval = setInterval(() => {
                 const currentPhase = self.phases[self.currentPhase];
-                if (currentPhase.value >= 1) {
+                currentPhase.started = true;
+                if (currentPhase.value && currentPhase.value >= 1) {
+                    currentPhase.complete = true;
                     self.currentPhase += 1;
                 }
                 if (self.currentPhase == self.numPhases) {
                     clearInterval(self.interval);
                     self.currentPhase -= 1;
-                } else {
-                    self.phases[self.currentPhase].value += 0.05;
+                } else if (self.phases[self.currentPhase].value) {
+                    (self.phases[self.currentPhase].value as number) += 0.01;
                 }
-            }, 500)
+                else {
+                    self.phases[self.currentPhase].started = true;
+                }
+            }, 150)
         }
     });
 

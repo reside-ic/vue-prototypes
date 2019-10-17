@@ -11,9 +11,9 @@
     "esModuleInterop": true
   },
   "include": [
-    "./src/app/**/*.ts",
-    "./src/app/**/*.vue",
-    "./tests/**/*.test.ts"
+    "**/*.ts",
+    "**/*.vue",
+    "**/*.test.ts"
   ],
   "files": [
     "./vue-shims.d.ts"
