@@ -11,7 +11,7 @@
 
     import Vue from "vue";
     import {phases, ProgressPhase} from "./types";
-    import PhaseProgress from "./progressPhase";
+    import PhaseProgress from "./progressBar";
     import Tick from "./tick";
 
     interface Data {

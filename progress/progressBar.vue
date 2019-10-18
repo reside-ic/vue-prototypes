@@ -35,7 +35,7 @@
                 if (this.isDeterminate) {
                     return this.phase.value!!;
                 }
-                return this.phase.started ? 1 : 0;
+                return 1;
             },
             title: function () {
                 let title = this.phase.name;
