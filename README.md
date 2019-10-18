@@ -6,7 +6,7 @@
 * Open `<new_prototype>/public/index.html` in a browser
 
 ### Adding a new prototype
-Each new prototype should get it's own directory. The structure of this should follow this pattern:
+Each new prototype should get its own directory. The structure of this should follow this pattern:
  
 ```
     my_new_prototype ├── public
