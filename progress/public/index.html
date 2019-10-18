@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <title>Progress prototype</title>
+    <style>
+        .in-progress .progress-bar {
+            background-color: #e31837
+        }
+
+        .not-started .help-text, .not-started .name {
+            color: #e5e5e5;
+        }
+
+        .not-started .progress-bar {
+            background: #e9ecef;
+        }
+
+        .tick {
+            margin-left: 5px;
+            margin-bottom: 5px;
+            margin-top: -5px;
+            height: 20px;
+            width: 20px;
+        }
+
+        path {
+            transform: scale(0.2);
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 2s linear forwards;
+        }
+
+        @keyframes dash {
+            from {
+                stroke-dashoffset: 1000;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="app" class="container">
+    <div class="my-5 py-5">
+        <h3>Multiple bars</h3>
+        <multiple-progress-bars></multiple-progress-bars>
+    </div>
+    <div class="my-5">
+        <h3>Single bar with step</h3>
+        <progress-with-phase-indicator></progress-with-phase-indicator>
+    </div>
+</div>
+</body>
+<script src="js/index.js"></script>
+</html>
