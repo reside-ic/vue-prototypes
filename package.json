@@ -55,6 +55,7 @@
   "dependencies": {
     "@types/plotly.js": "0.0.4",
     "chart.js": "^2.8.0",
-    "vue-chartjs": "^3.4.2"
+    "vue-chartjs": "^3.4.2",
+    "vue-google-charts": "^0.3.2"
   }
 }

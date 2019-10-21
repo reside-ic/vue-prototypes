@@ -5,3 +5,4 @@ declare module "*.vue" {
 }
 
 declare module 'chartjs-plugin-error-bars';
+declare module 'vue-google-charts';
