@@ -30,7 +30,7 @@ export const sampleData = [
     {age_group: '5-9', sex: 'female', indicator: '3', mean: 0.10, high:0.14, low: 0.06},
     {age_group: '10-14', sex: 'female', indicator: '3', mean: 0.12, high: 0.12, low: 0.08},
     {age_group: '15-19', sex: 'female', indicator: '3', mean: 0.09, high: 0.11, low: 0.08},
-    {age_group: '20-24', sex: 'female', indicator: '3', mean: 0.05, high: 0.08, low: 0.11},
+    {age_group: '20-24', sex: 'female', indicator: '3', mean: 0.08, high: 0.11, low: 0.05},
     {age_group: '25-29', sex: 'female', indicator: '3', mean: 0.20, high: 0.22, low: 0.17},
     {age_group: '30-34', sex: 'female', indicator: '3', mean: 0.16, high: 0.19, low: 0.11},
     {age_group: '35-39', sex: 'female', indicator: '3', mean: 0.19, high: 0.24, low: 0.14},
@@ -52,3 +52,17 @@ export const sampleData = [
     {age_group: '50-54', sex: 'male', indicator: '3', mean: 0.25, high: 0.28, low: 0.13},
     {age_group: '55-59', sex: 'male', indicator: '3', mean: 0.11, high: 0.15, low: 0.09}
 ];
+
+//TO COME FROM METADATA / USER SELECTIONS
+export const chartMetadata = {
+    xAxis: "age_group",
+    disaggregateBy: "sex",
+    disaggregateColours: {
+        female: '#e41a1c',
+        male: '#377eb8'
+    },
+    valueCol: "mean",
+    errorLow: "low",
+    errorHigh: "high",
+    filterCol: "indicator"
+};
