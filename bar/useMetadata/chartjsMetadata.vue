@@ -1,6 +1,13 @@
 <template>
     <div>
-        <chartjs-bar :chartdata="processedOutputData" :xLabel="xAxis.label" yLabel="Indicator"></chartjs-bar>
+        <div class="row">
+            <div class="col-md-3">
+                Filters go here
+            </div>
+            <div class="col-md-9">
+                <chartjs-bar :chartdata="processedOutputData" :xLabel="xAxis.label" yLabel="Indicator"></chartjs-bar>
+            </div>
+        </div>
     </div>
 </template>
 <script lang="ts">
@@ -122,9 +129,6 @@
                         dataset.errorBars[label].minus = row[this.indicator.error_low_column];
 
                     }
-
-                    alert(JSON.stringify(labels));
-                    alert(JSON.stringify(datasets));
 
                     return {
                         labels,
