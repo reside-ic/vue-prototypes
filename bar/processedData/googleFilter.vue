@@ -22,7 +22,7 @@
             data: function(){
                 return {
                     indicator: '2',
-                    outputData: sampleData
+                    chartData: sampleData
                 }
             },
             computed: {
@@ -35,7 +35,7 @@
                     const indexedRows: { [k: string]: any } = {};
 
                     tableColumns.push(chartMetadata.xAxis);
-                    for(const r of this.outputData){
+                    for(const r of this.chartData){
 
                         const row = r as any;
 

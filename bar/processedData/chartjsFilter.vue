@@ -14,7 +14,7 @@
 <script lang="ts">
 
     import Vue from "vue";
-    import ChartjsBar from "./chartjsBar.vue";
+    import ChartjsBar from "../useMetadata/chartjsBar.vue";
     import {sampleData, chartMetadata} from "./data";
 
     export default Vue.extend(
@@ -23,7 +23,7 @@
         data: function(){
             return {
                 indicator: '2',
-                outputData: sampleData
+                chartData: sampleData
             }
         },
         computed: {
@@ -32,7 +32,7 @@
 
                 const labels: string[] = [];
                 const datasets: any[] = [];
-                for(const r of this.outputData){
+                for(const r of this.chartData){
                     const row = r as any;
 
                     if (row[chartMetadata.filterCol] != filterValue) {
