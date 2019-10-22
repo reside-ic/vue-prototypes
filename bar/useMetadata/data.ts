@@ -162,7 +162,7 @@ export const sampleData = [
     {region: '2', age_group: '50-54', sex: 'female', indicator: '3', mean: 0.28, high: 0.3, low: 0.21},
     {region: '2', age_group: '55-59', sex: 'female', indicator: '3', mean: 0.1, high: 0.11, low: 0.07},
 
-    {region: '2', age_group: '0-4', sex: 'male', indicator: '3', mean: 0.35, high:0.33, low: 0.31},
+    {region: '2', age_group: '0-4', sex: 'male', indicator: '3', mean: 0.35, high:0.38, low: 0.31},
     {region: '2', age_group: '5-9', sex: 'male', indicator: '3', mean: 0.25, high:0.29, low: 0.23},
     {region: '2', age_group: '10-14', sex: 'male', indicator: '3', mean: 0.14, high: 0.19, low: 0.12},
     {region: '2', age_group: '15-19', sex: 'male', indicator: '3', mean: 0.15, high: 0.16, low: 0.15},
