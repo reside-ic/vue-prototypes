@@ -28,6 +28,19 @@
                                 @input="disaggregateBySelected"></treeselect>
                 </div>
                 <hr/>
+                <h3>Filters</h3>
+                <div v-for="filter in metadata.filters" class="form-group">
+                    <label class="font-weight-bold">{{filter.label}}</label>
+                    <treeselect :id="'elem' + filter.id"
+                                :multiple=isXAxisOrDisagg(filter.id)
+                                :clearable="false"
+                                :options="filterOptions(filter.id)"
+                                :value="filterValue(filter.id)"
+                                @input="filterValueChanged"></treeselect>
+                    <span v-if="isXAxisOrDisagg(filter.id)" class="text-muted">
+                        <small>{{filterBadgeText(filter.id)}}</small>
+                    </span>
+                </div>
             </div>
             <div class="col-md-9">
                 <chartjs-bar :chartdata="processedOutputData" :xLabel="xAxis.label" yLabel="Indicator"></chartjs-bar>
@@ -55,7 +68,9 @@
 
         indicator: BarIndicator,
         xAxis: BarMetadataFilter,
-        disaggregateBy: BarMetadataFilter
+        disaggregateBy: BarMetadataFilter,
+
+        selectedFilterValues: {[k: string]: string[]}
     }
 
     interface Methods {
@@ -63,8 +78,6 @@
     }
 
     interface Computed {
-        singleFilters: BarMetadataFilter[],
-        singleFilterValues: DataFilters
         processedOutputData: any
     }
 
@@ -76,24 +89,43 @@
         {
             name: "ChartjsMetadata",
             data: function(){
+                const metadata = sampleMetadata;
+                const dataFilters = sampleDataFilters;
+
+                const xAxis = metadata.filters[0];
+                const disaggregateBy = metadata.filters[1];
+
+                const selectedFilterValues = {} as {[k: string]: string[]};
+                //TODO: repurpose this as updateFilters once filters are editable
+                for (const filter of sampleMetadata.filters){
+                    const values = [] as string[];
+                    if (filter != xAxis && filter != disaggregateBy) {
+                        //select a single filter value where we need to
+                        values.push(dataFilters[filter.id][0].id);
+                    }
+                    selectedFilterValues[filter.id] = values;
+                }
+
                 return {
                     //These will be provided in props from outer component
                     chartData: sampleData,
-                    dataFilters: sampleDataFilters,
+                    dataFilters: dataFilters,
                     metadata: sampleMetadata,
 
                     indicator: sampleMetadata.indicators[0],
-                    xAxis: sampleMetadata.filters[0],
-                    disaggregateBy: sampleMetadata.filters[1]
+                    xAxis: xAxis,
+                    disaggregateBy: disaggregateBy,
+
+                    selectedFilterValues: selectedFilterValues
                 }
             },
             computed: {
-                singleFilters: function() {
+                /*singleFilters: function() {
                     const xAxisId = this.xAxis.id;
                     const disAggId = this.disaggregateBy.id;
                     return sampleMetadata.filters.filter(f => (f.id != xAxisId) && (f.id != disAggId));
-                },
-                singleFilterValues() {
+                },/
+                /*singleFilterValues() {
                     //TODO: until this comes from user input, select no values for the x axis and disaggregate, and first value
                     //for the singe value filters
                     const result = {} as DataFilters;
@@ -102,7 +134,7 @@
                         result[f.id] = [filterOptions[0]];
                     }
                     return result;
-                },
+                },*/
                 processedOutputData () {
                     const labels: string[] = [];
                     const datasets: any[] = [];
@@ -116,15 +148,13 @@
                             continue;
                         }
 
-                        //filter by x axis filters
-                        for (const filter of this.singleFilters) {
-                            const filterValue = this.singleFilterValues[filter.id][0].id;
-                            if (row[filter.id] != filterValue) {
-                                continue;
+                        //filter by other filters
+                        for (const filterId of Object.keys(this.selectedFilterValues)) {
+                            const filterValues = this.selectedFilterValues[filterId];
+                            if (filterValues.length > 0 && filterValues.indexOf(row[filterId]) < 0) {
+                                    continue;
                             }
                         }
-
-                        //TODO: filter by selected non-singlevalue filters (xAxis, disagg - may be no filters, or multiple)
 
                         const xAxisValue = row[this.xAxis.id];
                         const label = this.dataFilters[this.xAxis.id].filter(f => f.id == xAxisValue)[0].label;
@@ -179,6 +209,26 @@
                 },
                 disaggregateBySelected(value: string) {
                     this.disaggregateBy = this.metadata.filters.filter(f => f.id == value)[0];
+                },
+                filterOptions(filterId: string) {
+                    return this.dataFilters[filterId]
+                },
+                filterValue(filterId: string) {
+                    return this.selectedFilterValues[filterId]
+                },
+                filterValueChanged(value: any, instanceId: any) {
+                    //TODO: !!
+                    alert("filter value changed. value: " + JSON.stringify(value) + ". instanceId: " + JSON.stringify(instanceId));
+                },
+                isXAxisOrDisagg(filterId: string) {
+                    return this.xAxis.id == filterId || this.disaggregateBy.id == filterId
+                },
+                filterBadgeText(filterId: string) {
+                    if (filterId == this.xAxis.id) {
+                        return ("x axis");
+                    } else {
+                        return "disaggregate by"
+                    }
                 }
             },
             components: {
