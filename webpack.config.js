@@ -4,7 +4,9 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     entry: {
-        "progress/public/js/index": './progress/index.ts'
+        "progress/public/js/index": './progress/index.ts',
+        "bar/public/js/index": './bar/index.ts',
+        "bar/public/js/index2": './bar/index2.ts'
     },
     output: {
         filename: '[name].js',
