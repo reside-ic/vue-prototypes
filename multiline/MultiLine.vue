@@ -15,14 +15,38 @@
                     {
                         x: [0, 1, 2, 3, 4],
                         y: [40, 40, 42, 45, 47],
-                        type: "lines",
-                        name: "No intervention"
+                        name: "No intervention",
+                        type: "lines"
                     },
                     {
                         x: [0, 1, 2, 3, 4],
-                        y: [40, 40, 37, 35, 35],
-                        type: "lines",
-                        name: "Pyrethoid ITN"
+                        y: [40, 36, 36, 37, 38],
+                        name: "Pyrethoid ITN",
+                        type: "lines"
+                    },
+                    {
+                        x: [0, 1, 2, 3, 4],
+                        y: [40, 37, 36, 35, 34],
+                        name: "Switch to Pyrethoid-PBO ITN",
+                        type: "lines"
+                    },
+                    {
+                        x: [0, 1, 2, 3, 4],
+                        y: [40, 41, 41, 40, 39],
+                        name: "Only IRS",
+                        type: "lines"
+                    },
+                    {
+                        x: [0, 1, 2, 3, 4],
+                        y: [40, 40, 42, 45, 47],
+                        name: "Add IRS to Pyrethoid ITN",
+                        type: "lines"
+                    },
+                    {
+                        x: [0, 1, 2, 3, 4],
+                        y: [40, 35, 34, 33, 32],
+                        name: "Add IRS to Pyrethoid-PBO ITN",
+                        type: "lines"
                     },
                     {
                         x: [1, 1],
