@@ -7,7 +7,7 @@ module.exports = {
         "progress/public/js/index": './progress/index.ts',
         "bar/public/js/index": './bar/index.ts',
         "bar/public/js/index2": './bar/index2.ts',
-        "multiline/public/js/index": './multiline/index.ts',
+        "mint/public/js/index": './mint/index.ts',
     },
     output: {
         filename: '[name].js',
