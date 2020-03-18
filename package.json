@@ -45,7 +45,7 @@
     "vue-feather-icons": "^5.0.0",
     "vue-jest": "^3.0.4",
     "vue-loader": "^15.7.0",
-    "vue-plotly": "^1.0.1",
+    "vue-plotly": "^1.1.0",
     "vue-template-compiler": "^2.6.8",
     "vuex": "^3.1.1",
     "webpack": "^4.31.0",
