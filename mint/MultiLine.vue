@@ -1,11 +1,12 @@
 <template>
-    <plotly :data="data" :layout="layout" :display-mode-bar="false"></plotly>
+    <plotly :data="dataSeries" :layout="layout" :display-mode-bar="false"></plotly>
 </template>
 <script lang="ts">
     import Vue from "vue"
     import {Plotly} from "vue-plotly"
 
-    export default Vue.extend({
+    export default Vue.extend<any, any, any, any>({
+        props: ["netUse", "columns", "dataSet"],
         components: {
             Plotly
         },
@@ -13,49 +14,35 @@
             return {
                 data: [
                     {
-                        x: [0, 1, 2, 3, 4],
-                        y: [40, 40, 42, 45, 47],
+                        cols: ["prev_year_1", "prev_year_2", "prev_year_3"],
+                        id: "none",
                         name: "No intervention",
                         type: "lines",
                         marker: {color: "grey"}
                     },
                     {
-                        x: [0, 1, 2, 3, 4],
-                        y: [40, 36, 36, 37, 38],
+                        cols: ["prev_year_1", "prev_year_2", "prev_year_3"],
+                        id: "ITN",
                         name: "Pyrethoid ITN",
                         type: "lines",
                         marker: {color: "blue"}
                     },
                     {
-                        x: [0, 1, 2, 3, 4],
-                        y: [40, 37, 36, 35, 34],
+                        cols: ["prev_year_1", "prev_year_2", "prev_year_3"],
+                        id: "PBO",
                         name: "Switch to Pyrethoid-PBO ITN",
                         type: "lines",
                         marker: {color: "aquamarine"}
                     },
                     {
-                        x: [0, 1, 2, 3, 4],
-                        y: [40, 41, 41, 40, 39],
+                        cols: ["prev_year_1", "prev_year_2", "prev_year_3"],
+                        id: "IRS",
                         name: "Only IRS",
                         type: "lines",
                         marker: {color: "purple"}
                     },
                     {
-                        x: [0, 1, 2, 3, 4],
-                        y: [40, 40, 42, 45, 47],
-                        name: "Add IRS to Pyrethoid ITN",
-                        type: "lines",
-                        marker: {color: "darkred"}
-                    },
-                    {
-                        x: [0, 1, 2, 3, 4],
-                        y: [40, 35, 34, 33, 32],
-                        name: "Add IRS to Pyrethoid-PBO ITN",
-                        type: "lines",
-                        marker: {color: "orange"}
-                    },
-                    {
-                        x: [1, 1],
+                        x: ["prev_year_1", "prev_year_1"],
                         y: [0, 100],
                         line: {
                             dash: 'dot',
@@ -70,19 +57,35 @@
                 layout: {
                     title: "Projected prevalence in under 5 year olds",
                     xaxis: {
-                        title: 'years',
+                        title: 'years of intervention',
                         showline: true,
-                        range: [0, 4],
-                        tickvals: [0, 1, 2, 3, 4],
-                        autorange: false
+                        tickvals: ["prev_year_1", "prev_year_2", "prev_year_3"],
+                        ticktext: [1, 2, 3],
+                        autorange: true
                     },
                     yaxis: {
                         title: 'prevalence (%)',
                         showline: true,
-                        range: [0, 100],
+                        range: [0, 20],
                         autorange: false
                     }
                 }
+            }
+        },
+        computed: {
+            dataSeries() {
+                return this.data.map((d: any) => ({
+                    ...d,
+                    x: d.x || d.cols,
+                    y: d.y || this.getYValues(d.id, d.cols)
+                }));
+            }
+        },
+        methods: {
+            getYValues(id: string, cols: string[]) {
+                const row = this.dataSet.find((row: any) => row["intervention"] == id && row["net_use"] == this.netUse);
+                if (!row) return [];
+                return cols.map((c: string) => row[c]);
             }
         }
     })

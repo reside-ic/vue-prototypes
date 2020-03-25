@@ -1,11 +1,12 @@
 <template>
-    <plotly :data="data" :layout="layout" :display-mode-bar="false"></plotly>
+    <plotly :data="dataSeries" :layout="layout" :display-mode-bar="false"></plotly>
 </template>
 <script lang="ts">
     import Vue from "vue"
     import {Plotly} from "vue-plotly"
 
-    export default Vue.extend({
+    export default Vue.extend<any, any, any, any>({
+        props: ["netUse", "columns", "dataSet"],
         components: {
             Plotly
         },
@@ -14,7 +15,8 @@
                 data: [
                     {
                         x: ["ITN"],
-                        y: [20],
+                        cols: ["cases_averted"],
+                        id: "ITN",
                         type: "bar",
                         name: "Pyrethoid ITN",
                         marker: {
@@ -23,8 +25,8 @@
                         },
                         error_y: {
                             type: "data",
-                            array: [1],
-                            arrayminus: [6],
+                            cols: ["cases_averted_high"],
+                            colsminus: ["cases_averted_low"],
                             visible: true,
                             thickness: 1.5,
                             width: 0,
@@ -33,7 +35,8 @@
                     },
                     {
                         x: ["PBO"],
-                        y: [20],
+                        cols: ["cases_averted"],
+                        id: "PBO",
                         type: "bar",
                         name: "Switch to Pyrethoid-PBO ITN",
                         marker: {
@@ -42,8 +45,8 @@
                         },
                         error_y: {
                             type: "data",
-                            array: [2],
-                            arrayminus: [5],
+                            cols: ["cases_averted_high"],
+                            colsminus: ["cases_averted_low"],
                             visible: true,
                             thickness: 1.5,
                             width: 0,
@@ -52,7 +55,8 @@
                     },
                     {
                         x: ["IRS"],
-                        y: [159],
+                        cols: ["cases_averted"],
+                        id: "IRS",
                         name: "Only IRS",
                         type: "bar",
                         marker: {
@@ -61,46 +65,8 @@
                         },
                         error_y: {
                             type: "data",
-                            array: [3],
-                            arrayminus: [25],
-                            visible: true,
-                            thickness: 1.5,
-                            width: 0,
-                            opacity: 1
-                        }
-                    },
-                    {
-                        x: ["IRS + ITN"],
-                        y: [160, 161],
-                        name: "Add IRS to Pyrethoid ITN",
-                        type: "bar",
-                        marker: {
-                            color: "darkred",
-                            opacity: 0.5,
-                        },
-                        error_y: {
-                            type: "data",
-                            array: [4],
-                            arrayminus: [19],
-                            visible: true,
-                            thickness: 1.5,
-                            width: 0,
-                            opacity: 1
-                        }
-                    },
-                    {
-                        x: ["IRS + PBO"],
-                        y: [161],
-                        name: "Add IRS to Pyrethoid-PBO ITN",
-                        type: "bar",
-                        marker: {
-                            color: "orange",
-                            opacity: 0.5
-                        },
-                        error_y: {
-                            type: "data",
-                            array: [3],
-                            arrayminus: [20],
+                            cols: ["cases_averted_high"],
+                            colsminus: ["cases_averted_low"],
                             visible: true,
                             thickness: 1.5,
                             width: 0,
@@ -111,11 +77,43 @@
                 layout: {
                     title: "Clinical cases averted per 1,000 people per year",
                     yaxis: {
+                        title: "cases averted",
                         showline: true,
-                        range: [0, 640],
+                        range: [0, 300],
                         autorange: false
                     },
+                    xaxis: {
+                        title: 'intervention',
+                        showline: true,
+                        tickvals: ["ITN", "PBO", "IRS"],
+                        ticktext: ["ITN", "PBO", "IRS"],
+                        autorange: true
+                    },
                     showlegend: true
+                }
+            }
+        },
+        computed: {
+            dataSeries() {
+                return this.data.map((d: any) => {
+                    const row = this.getRow(d.id);
+                    return {
+                        ...d,
+                        y: d.y || d.cols.map((c: string) => row[c]),
+                        error_y: this.getErrorBar(row, d.error_y)
+                    }
+                });
+            }
+        },
+        methods: {
+            getRow(id: string) {
+                return this.dataSet.find((row: any) => row["intervention"] == id && row["net_use"] == this.netUse);
+            },
+            getErrorBar(row: any, error: any) {
+                return {
+                    ...error,
+                    array: error.cols.map((c: string) => row[c]),
+                    arrayminus: error.colsminus.map((c: string) => row[c])
                 }
             }
         }
