@@ -314,4 +314,13 @@ export const casesAvertedGraph =
             },
             showlegend: true
         }
+    };
+
+export const settings = [
+    {
+        id: "net_use",
+        lable: "Net use",
+        value: 20,
+        options: [{value: 20, label: "20%"},{value: 40, label: "40%"},{value: 60, label: "60%"},{value: 80, label: "80%"}]
     }
+];

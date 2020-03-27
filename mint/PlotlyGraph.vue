@@ -7,7 +7,7 @@
     import {casesAvertedGraph} from "./fakeAPIData";
 
     export default Vue.extend<any, any, any, any>({
-        props: ["netUse", "columns", "dataSet", "data", "layout"],
+        props: ["settings", "columns", "dataSet", "data", "layout"],
         components: {
             Plotly
         },
@@ -24,8 +24,16 @@
             }
         },
         methods: {
+            filterBySettings(row: any) {
+                for (let key of Object.keys(this.settings)){
+                    if (row[key] != this.settings[key]){
+                        return false;
+                    }
+                }
+                return true;
+            },
             getRow(id: string) {
-                return this.dataSet.find((row: any) => row["intervention"] == id && row["net_use"] == this.netUse);
+                return this.dataSet.find((row: any) => row["intervention"] == id && this.filterBySettings(row));
             },
             getErrorBar(row: any, error: any) {
                 return {
