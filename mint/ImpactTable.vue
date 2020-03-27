@@ -7,7 +7,7 @@
         </thead>
         <tbody>
         <tr v-for="row in displayData">
-            <td v-for="cell in row">
+            <td v-for="(cell, index) in row" v-if="columnIds.indexOf(index) > -1">
                 {{cell}}
             </td>
         </tr>
@@ -21,6 +21,9 @@
     export default Vue.extend({
         props: ["dataSet", "columns", "netUse"],
         computed: {
+            columnIds() {
+                return this.columns.map((c: any) => c.id)
+            },
             displayData() {
                 return this.dataSet.filter((d: any) => d["net_use"] == this.netUse);
             }

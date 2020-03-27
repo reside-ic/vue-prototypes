@@ -7,15 +7,9 @@
     import {casesAvertedGraph} from "./fakeAPIData";
 
     export default Vue.extend<any, any, any, any>({
-        props: ["netUse", "columns", "dataSet"],
+        props: ["netUse", "columns", "dataSet", "data", "layout"],
         components: {
             Plotly
-        },
-        data() {
-            return {
-                data: casesAvertedGraph.data,
-                layout: casesAvertedGraph.layout
-            }
         },
         computed: {
             dataSeries() {
@@ -24,7 +18,7 @@
                     return {
                         ...d,
                         y: d.y || d.cols.map((c: string) => row[c]),
-                        error_y: this.getErrorBar(row, d.error_y)
+                        error_y: d.error_y && this.getErrorBar(row, d.error_y)
                     }
                 });
             }

@@ -10,10 +10,18 @@
             </select>
         </div>
         <div class="my-5">
-            <multi-line :columns="columns" :data-set="data" :net-use="netUse"></multi-line>
+            <plotly-graph :columns="columns"
+                          :data-set="data"
+                          :net-use="netUse"
+                          :data="prevalence.data"
+                          :layout="prevalence.layout"></plotly-graph>
         </div>
         <div class="my-5">
-            <bar-chart :columns="columns" :data-set="data" :net-use="netUse"></bar-chart>
+            <plotly-graph :columns="columns"
+                          :data-set="data"
+                          :net-use="netUse"
+                          :data="cases.data"
+                          :layout="cases.layout"></plotly-graph>
         </div>
         <div class="my-5">
             <impact-table :columns="columns" :data-set="data" :net-use="netUse"></impact-table>
@@ -22,19 +30,20 @@
 </template>
 <script lang="ts">
 
-    import MultiLine from "./MultiLine.vue";
     import Vue from "vue";
-    import BarChart from "./BarChart.vue";
     import ImpactTable from "./ImpactTable.vue";
-    import {columns, data} from "./fakeAPIData";
+    import {casesAvertedGraph, columns, data, prevGraph} from "./fakeAPIData";
+    import PlotlyGraph from "./PlotlyGraph.vue";
 
     export default Vue.extend({
-        components: {MultiLine, BarChart, ImpactTable},
+        components: {PlotlyGraph, ImpactTable},
         data() {
             return {
                 netUse: 20,
                 columns: columns,
-                data: data
+                data: data,
+                prevalence: prevGraph,
+                cases: casesAvertedGraph
             }
         }
     })
