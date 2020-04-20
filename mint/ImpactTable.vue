@@ -31,7 +31,7 @@
         methods: {
             filterBySettings(row: any) {
                 for (let key of Object.keys(this.settings)){
-                    if (row[key] != this.settings[key]){
+                    if (row[key] && row[key] != this.settings[key]){
                         return false;
                     }
                 }

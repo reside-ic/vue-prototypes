@@ -1,5 +1,5 @@
-// this is the data that would be returned after the baseline inputs are set
-export const data = [
+// this is the table data that would be returned after the baseline inputs are set
+export const tableData = [
     {
         "intervention": "none",
         "net_use": 20,
@@ -164,46 +164,50 @@ export const data = [
 ];
 
 export const columns = [
-    {"id": "intervention", "name": "Interventions"},
-    {"id": "net_use", "name": "Net use"},
-    {"id": "prev_year_1", "name": "Prevalence Under 5 yrs: Yr 1 post intervention"},
-    {"id": "prev_year_2", "name": "Prevalence Under 5 yrs: Yr 2 post intervention"},
-    {"id": "prev_year_3", "name": "Prevalence Under 5 yrs: Yr 3 post intervention"},
-    {"id": "cases_averted", "name": "Cases averted across 3 yrs since intervention"}
+    {"intervention": "Interventions"},
+    {"net_use": "Net use"},
+    {"prev_year_1": "Prevalence Under 5 yrs: Yr 1 post intervention"},
+    {"prev_year_2": "Prevalence Under 5 yrs: Yr 2 post intervention"},
+    {"prev_year_3": "Prevalence Under 5 yrs: Yr 3 post intervention"},
+    {"cases_averted": "Cases averted across 3 yrs since intervention"}
 ];
 
 export const prevGraph = {
     data: [
         {
-            cols: ["prev_year_1", "prev_year_2", "prev_year_3"],
+            y_col: "value",
+            x_col: "month",
             id: "none",
             name: "No intervention",
             type: "lines",
             marker: {color: "grey"}
         },
         {
-            cols: ["prev_year_1", "prev_year_2", "prev_year_3"],
+            y_col: "value",
+            x_col: "month",
             id: "ITN",
             name: "Pyrethoid ITN",
             type: "lines",
             marker: {color: "blue"}
         },
         {
-            cols: ["prev_year_1", "prev_year_2", "prev_year_3"],
+            y_col: "value",
+            x_col: "month",
             id: "PBO",
             name: "Switch to Pyrethoid-PBO ITN",
             type: "lines",
             marker: {color: "aquamarine"}
         },
         {
-            cols: ["prev_year_1", "prev_year_2", "prev_year_3"],
+            y_col: "value",
+            x_col: "month",
             id: "IRS",
             name: "Only IRS",
             type: "lines",
             marker: {color: "purple"}
         },
         {
-            x: ["prev_year_1", "prev_year_1"],
+            x: [1, 1],
             y: [0, 100],
             line: {
                 dash: 'dot',
@@ -220,14 +224,14 @@ export const prevGraph = {
         xaxis: {
             title: 'years of intervention',
             showline: true,
-            tickvals: ["prev_year_1", "prev_year_2", "prev_year_3"],
-            ticktext: [1, 2, 3],
+            tickvals: [12, 24, 36, 48],
+            ticktext: [0, 1, 2, 3],
             autorange: true
         },
         yaxis: {
             title: 'prevalence (%)',
             showline: true,
-            range: [0, 20],
+            range: [0, 2],
             autorange: false
         }
     }
@@ -318,9 +322,47 @@ export const casesAvertedGraph =
 
 export const settings = [
     {
+        id: "prevalence",
+        label: "Prevalence",
+        value: "low",
+        options: [{value: "low", label: "low"}, {value: "med", label: "med"}, {value: "high", label: "high"}, {
+            value: "low",
+            label: "low"
+        }]
+    },
+    {
         id: "net_use",
         label: "Net use",
         value: 20,
-        options: [{value: 20, label: "20%"},{value: 40, label: "40%"},{value: 60, label: "60%"},{value: 80, label: "80%"}]
+        options: [{value: 20, label: "20%"}, {value: 40, label: "40%"}, {value: 60, label: "60%"}, {
+            value: 80,
+            label: "80%"
+        }]
+    },
+    {
+        id: "irs_use",
+        label: "Net use",
+        value: 0,
+        options: [
+            {value: 0, label: "0"},
+            {value: 0.6, label: "60%"},
+            {value: 0.7, label: "70%"},
+            {value: 0.8, label: "80%"},
+            {value: 0.9, label: "90%"},
+            {value: 1, label: "100%"}
+        ]
+    },
+    {
+        id: "resistance",
+        label: "Resistance",
+        value: 0.2,
+        options: [
+            {value: 0, label: "0%"},
+            {value: 0.2, label: "20%"},
+            {value: 0.4, label: "40%"},
+            {value: 0.6, label: "60%"},
+            {value: 0.8, label: "80%"},
+            {value: 1, label: "100%"}
+        ]
     }
 ];
