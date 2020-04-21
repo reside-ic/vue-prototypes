@@ -2,12 +2,12 @@
     <table>
         <thead>
         <tr>
-            <th v-for="col in columns">{{col.name}}</th>
+            <th v-for="key in Object.keys(columns)">{{columns[key]}}</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="row in displayData">
-            <td v-for="(cell, index) in row" v-if="columnIds.indexOf(index) > -1">
+        <tr v-for="row in filteredData">
+            <td v-for="cell in row">
                 {{cell}}
             </td>
         </tr>
@@ -15,28 +15,21 @@
     </table>
 </template>
 <script lang="ts">
+    import {defineComponent} from "@vue/composition-api";
+    import {FilteringProps, useFiltering} from "./filteredData";
+    import {Dictionary} from "vuex";
 
-    import Vue from "vue";
-
-    export default Vue.extend<any, any, any, any>({
-        props: ["dataSet", "columns", "settings"],
-        computed: {
-            columnIds() {
-                return this.columns.map((c: any) => c.id)
-            },
-            displayData() {
-                return this.dataSet.filter((row: any) => this.filterBySettings(row));
+    interface Props extends FilteringProps {
+        columns: Dictionary<string>
+    }
+    
+    export default defineComponent({
+        props: {dataSet: Array, columns: Object, settings: Object},
+        setup(props: Props) {
+            const {filteredData} = useFiltering(props)
+            return {
+                filteredData
             }
-        },
-        methods: {
-            filterBySettings(row: any) {
-                for (let key of Object.keys(this.settings)){
-                    if (row[key] && row[key] != this.settings[key]){
-                        return false;
-                    }
-                }
-                return true;
-            },
         }
     })
 </script>

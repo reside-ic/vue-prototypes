@@ -9,14 +9,14 @@
             </div>
         </div>
         <div class="my-5">
-            <plotly-graph :columns="columns"
+            <plotly-graph
                           :data-set="longData"
                           :settings="selectedSettings"
                           :data="prevalence.data"
                           :layout="prevalence.layout"></plotly-graph>
         </div>
         <div class="my-5">
-            <plotly-graph :columns="columns"
+            <plotly-graph
                           :data-set="wideData"
                           :settings="selectedSettings"
                           :data="cases.data"
@@ -31,7 +31,7 @@
 
     import Vue from "vue";
     import ImpactTable from "./ImpactTable.vue";
-    import {casesAvertedGraph, columns, prevGraph, settings, tableData} from "./fakeAPIData";
+    import {casesAvertedGraph, columns, prevGraph, settings, wideData} from "./fakeAPIData";
     import PlotlyGraph from "./PlotlyGraph.vue";
 
     export default Vue.extend({
@@ -40,7 +40,7 @@
             return {
                 settings: settings,
                 columns: columns,
-                wideData: tableData,
+                wideData: wideData,
                 longData: [] as any[],
                 prevalence: prevGraph,
                 cases: casesAvertedGraph
