@@ -3,7 +3,7 @@ import {computed} from "@vue/composition-api";
 
 export interface FilteringProps {
     settings: Dictionary<string>
-    dataSet: any[]
+    data: any[]
 }
 
 export function useFiltering(props: FilteringProps) {
@@ -16,7 +16,7 @@ export function useFiltering(props: FilteringProps) {
         return true;
     }
 
-    const filteredData = computed<any[]>(() => props.dataSet.filter((row: any) => filterBySettings(row)))
+    const filteredData = computed<any[]>(() => props.data.filter((row: any) => filterBySettings(row)))
 
     return {filteredData}
 }

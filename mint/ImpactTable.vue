@@ -24,7 +24,7 @@
     }
     
     export default defineComponent({
-        props: {dataSet: Array, columns: Object, settings: Object},
+        props: {data: Array, columns: Object, settings: Object},
         setup(props: Props) {
             const {filteredData} = useFiltering(props)
             return {

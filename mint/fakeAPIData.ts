@@ -6,7 +6,10 @@ export const wideData = [
         "prev_year_1": 7.32,
         "prev_year_2": 7.34,
         "prev_year_3": 7.48,
-        "cases_averted": 0
+        "cases_averted": 0,
+        "cases_averted_high": 0,
+        "cases_averted_low": 0,
+
     },
     {
         "intervention": "none",
@@ -14,7 +17,9 @@ export const wideData = [
         "prev_year_1": 7.32,
         "prev_year_2": 7.34,
         "prev_year_3": 7.48,
-        "cases_averted": 0
+        "cases_averted": 0,
+        "cases_averted_high": 0,
+        "cases_averted_low": 0,
     },
     {
         "intervention": "none",
@@ -22,7 +27,9 @@ export const wideData = [
         "prev_year_1": 7.32,
         "prev_year_2": 7.34,
         "prev_year_3": 7.48,
-        "cases_averted": 0
+        "cases_averted": 0,
+        "cases_averted_high": 0,
+        "cases_averted_low": 0,
     },
     {
         "intervention": "none",
@@ -30,7 +37,9 @@ export const wideData = [
         "prev_year_1": 7.32,
         "prev_year_2": 7.34,
         "prev_year_3": 7.48,
-        "cases_averted": 0
+        "cases_averted": 0,
+        "cases_averted_high": 0,
+        "cases_averted_low": 0,
     },
     {
         "intervention": "ITN",
@@ -38,7 +47,9 @@ export const wideData = [
         "prev_year_1": 5.32,
         "prev_year_2": 5.34,
         "prev_year_3": 5.48,
-        "cases_averted": 51
+        "cases_averted": 51,
+        "cases_averted_high": 60,
+        "cases_averted_low": 50,
     },
     {
         "intervention": "ITN",
@@ -46,7 +57,9 @@ export const wideData = [
         "prev_year_1": 4.32,
         "prev_year_2": 4.34,
         "prev_year_3": 4.48,
-        "cases_averted": 52
+        "cases_averted": 52,
+        "cases_averted_high": 60,
+        "cases_averted_low": 50,
     },
     {
         "intervention": "ITN",
@@ -54,7 +67,9 @@ export const wideData = [
         "prev_year_1": 3.32,
         "prev_year_2": 3.34,
         "prev_year_3": 3.48,
-        "cases_averted": 54
+        "cases_averted": 54,
+        "cases_averted_high": 62,
+        "cases_averted_low": 50,
     },
     {
         "intervention": "ITN",
@@ -62,7 +77,9 @@ export const wideData = [
         "prev_year_1": 2.32,
         "prev_year_2": 2.34,
         "prev_year_3": 2.48,
-        "cases_averted": 55
+        "cases_averted": 55,
+        "cases_averted_high": 62,
+        "cases_averted_low": 50,
     },
     {
         "intervention": "PBO",
@@ -70,7 +87,9 @@ export const wideData = [
         "prev_year_1": 6.32,
         "prev_year_2": 6.34,
         "prev_year_3": 6.48,
-        "cases_averted": 61
+        "cases_averted": 61,
+        "cases_averted_high": 70,
+        "cases_averted_low": 60,
     },
     {
         "intervention": "PBO",
@@ -78,7 +97,9 @@ export const wideData = [
         "prev_year_1": 5.32,
         "prev_year_2": 5.34,
         "prev_year_3": 5.48,
-        "cases_averted": 62
+        "cases_averted": 62,
+        "cases_averted_high": 72,
+        "cases_averted_low": 60,
     },
     {
         "intervention": "PBO",
@@ -86,7 +107,9 @@ export const wideData = [
         "prev_year_1": 4.32,
         "prev_year_2": 4.34,
         "prev_year_3": 4.48,
-        "cases_averted": 63
+        "cases_averted": 63,
+        "cases_averted_high": 73,
+        "cases_averted_low": 60,
     },
     {
         "intervention": "PBO",
@@ -94,7 +117,9 @@ export const wideData = [
         "prev_year_1": 3.32,
         "prev_year_2": 3.34,
         "prev_year_3": 3.48,
-        "cases_averted": 64
+        "cases_averted": 64,
+        "cases_averted_high": 74,
+        "cases_averted_low": 60,
     },
     {
         "intervention": "IRS",
@@ -102,7 +127,9 @@ export const wideData = [
         "prev_year_1": 7.32,
         "prev_year_2": 7.34,
         "prev_year_3": 7.48,
-        "cases_averted": 70
+        "cases_averted": 70,
+        "cases_averted_high": 72,
+        "cases_averted_low": 60,
     },
     {
         "intervention": "IRS",
@@ -110,7 +137,9 @@ export const wideData = [
         "prev_year_1": 6.32,
         "prev_year_2": 6.34,
         "prev_year_3": 6.48,
-        "cases_averted": 70
+        "cases_averted": 70,
+        "cases_averted_high": 72,
+        "cases_averted_low": 60,
     },
     {
         "intervention": "IRS",
@@ -118,7 +147,9 @@ export const wideData = [
         "prev_year_1": 5.32,
         "prev_year_2": 5.34,
         "prev_year_3": 5.48,
-        "cases_averted": 74
+        "cases_averted": 74,
+        "cases_averted_high": 80,
+        "cases_averted_low": 60,
     },
     {
         "intervention": "IRS",
@@ -126,7 +157,9 @@ export const wideData = [
         "prev_year_1": 4.32,
         "prev_year_2": 4.34,
         "prev_year_3": 4.48,
-        "cases_averted": 75
+        "cases_averted": 75,
+        "cases_averted_high": 80,
+        "cases_averted_low": 60,
     }
 ];
 
@@ -137,55 +170,84 @@ export const columns =
         "prev_year_1": "Prevalence Under 5 yrs: Yr 1 post intervention",
         "prev_year_2": "Prevalence Under 5 yrs: Yr 2 post intervention",
         "prev_year_3": "Prevalence Under 5 yrs: Yr 3 post intervention",
-        "cases_averted": "Cases averted across 3 yrs since intervention"
+        "cases_averted": "Cases averted across 3 yrs since intervention",
+        "cases_averted_high": "Upper bound for cases averted",
+        "cases_averted_low": "Lower bound for cases averted"
     }
 
+export interface SeriesDefinition {
+    x?: any[]
+    y?: any[],
+    y_col?: string,
+    x_col?: string,
+    id?: string,
+    id_col?: string,
+    name?: string,
+    type?: string
+    [propName: string]: any;
+}
 
-export const prevGraph = {
-    data: [
+export interface LongFormatSeriesMetadata {
+    y_col: string,
+    x_col: string,
+    id_col: string
+    format: "long"
+}
+
+export interface WideFormatSeriesMetadata {
+    cols: string[],
+    id_col: string
+    format: "wide"
+}
+
+export type SeriesMetadata = LongFormatSeriesMetadata | WideFormatSeriesMetadata
+
+export interface GraphDefinition {
+    metadata?: SeriesMetadata
+    series: SeriesDefinition[]
+    layout: any
+    config?: any
+}
+
+export const prevGraph: GraphDefinition = {
+    metadata: {
+        x_col: "month",
+        y_col: "value",
+        id_col: "intervention",
+        format: "long"
+    },
+    series: [
         {
-            y_col: "value",
-            x_col: "month",
             id: "none",
             name: "No intervention",
             type: "lines",
             marker: {color: "grey"}
         },
         {
-            y_col: "value",
-            x_col: "month",
             id: "ITN",
             name: "Pyrethoid ITN",
             type: "lines",
             marker: {color: "blue"}
         },
         {
-            y_col: "value",
-            x_col: "month",
             id: "PBO",
             name: "Switch to Pyrethoid-PBO ITN",
             type: "lines",
             marker: {color: "aquamarine"}
         },
         {
-            y_col: "value",
-            x_col: "month",
             id: "IRS",
             name: "Only IRS",
             type: "lines",
             marker: {color: "purple"}
         },
         {
-            y_col: "value",
-            x_col: "month",
             id: "IRS + ITN",
             name: "Add IRS to Pyrethoid ITN",
             type: "lines",
             marker: {color: "darkred"}
         },
         {
-            y_col: "value",
-            x_col: "month",
             id: "IRS + PBO",
             name: "Add IRS to Pyrethoid-PBO ITN",
             type: "lines",
@@ -222,12 +284,16 @@ export const prevGraph = {
     }
 };
 
-export const casesAvertedGraph =
+export const casesAvertedGraph: GraphDefinition =
     {
-        data: [
+        metadata: {
+            cols: ["cases_averted"],
+            id_col: "intervention",
+            format: "wide"
+        },
+        series: [
             {
                 x: ["ITN"],
-                cols: ["cases_averted"],
                 id: "ITN",
                 type: "bar",
                 name: "Pyrethoid ITN",
@@ -247,7 +313,6 @@ export const casesAvertedGraph =
             },
             {
                 x: ["PBO"],
-                cols: ["cases_averted"],
                 id: "PBO",
                 type: "bar",
                 name: "Switch to Pyrethoid-PBO ITN",
@@ -267,7 +332,6 @@ export const casesAvertedGraph =
             },
             {
                 x: ["IRS"],
-                cols: ["cases_averted"],
                 id: "IRS",
                 name: "Only IRS",
                 type: "bar",

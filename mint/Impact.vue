@@ -9,21 +9,21 @@
             </div>
         </div>
         <div class="my-5">
-            <plotly-graph
-                          :data-set="longData"
+            <plotly-graph :data="longData"
                           :settings="selectedSettings"
-                          :data="prevalence.data"
+                          :metadata="prevalence.metadata"
+                          :series="prevalence.series"
                           :layout="prevalence.layout"></plotly-graph>
         </div>
         <div class="my-5">
-            <plotly-graph
-                          :data-set="wideData"
+            <plotly-graph :data="wideData"
                           :settings="selectedSettings"
-                          :data="cases.data"
+                          :metadata="cases.metadata"
+                          :series="cases.series"
                           :layout="cases.layout"></plotly-graph>
         </div>
         <div class="my-5">
-            <impact-table :columns="columns" :data-set="wideData" :settings="selectedSettings"></impact-table>
+            <impact-table :columns="columns" :data="wideData" :settings="selectedSettings"></impact-table>
         </div>
     </div>
 </template>

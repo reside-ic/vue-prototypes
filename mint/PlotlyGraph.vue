@@ -6,9 +6,11 @@
     import {computed, defineComponent} from "@vue/composition-api";
     import {FilteringProps, useFiltering} from "./filteredData";
     import {Dictionary} from "vuex";
+    import {LongFormatSeriesMetadata, SeriesDefinition, SeriesMetadata, WideFormatSeriesMetadata} from "./fakeAPIData";
 
     interface Props extends FilteringProps {
-        data: any[]
+        series: SeriesDefinition[]
+        metadata: SeriesMetadata
         layout: Dictionary<string>
     }
 
@@ -16,21 +18,22 @@
         components: {
             Plotly
         },
-        props: { settings: Object, dataSet: Array, data: Array, layout: Object },
+        props: {settings: Object, data: Array, series: Array, metadata: Object, layout: Object},
         setup(props: Props) {
             const {filteredData} = useFiltering(props)
 
             const getRow = (id: string) => {
-                return filteredData.value.find((row: any) => row["intervention"] == id);
+                return filteredData.value.find((row: any) => row[props.metadata.id_col] == id);
             }
 
-            const getRows = (definition: any) => {
+            const getRows = (definition: SeriesDefinition) => {
                 const x = [] as any[];
                 const y = [] as any[];
+                const meta = props.metadata as LongFormatSeriesMetadata
                 filteredData.value.map((row: any) => {
-                    if (row["intervention"] == definition.id) {
-                        x.push(row[definition.x_col])
-                        y.push(row[definition.y_col])
+                    if (row[meta.id_col] == definition.id) {
+                        x.push(row[meta.x_col])
+                        y.push(row[meta.y_col])
                     }
                 });
                 return [x, y]
@@ -45,24 +48,28 @@
             }
 
             const dataSeries = computed(() => {
-                return props.data.map((d: any) => {
-                    if (d.cols) {
+                return props.series.map((d: SeriesDefinition) => {
+                    if (d.x && d.y) {
+                        // all values are given explicitly
+                        return d
+                    }
+                    if (d.id && props.metadata.format == "wide") {
                         const row = getRow(d.id);
                         return {
                             ...d,
-                            y: d.y || d.cols.map((c: string) => row[c]),
+                            y: props.metadata.cols.map((c: string) => row[c]),
                             error_y: d.error_y && getErrorBar(row, d.error_y)
                         }
-                    }
-                    else if (d.y_col) {
+                    } else if (d.id && props.metadata.format == "long") {
                         const rows = getRows(d);
                         return {
                             ...d,
-                            x: d.x || rows[0],
+                            x: rows[0],
                             y: rows[1]
                         }
                     }
-                    else return d
+                    // ignore invalid definitions
+                    return null
                 });
             });
 
