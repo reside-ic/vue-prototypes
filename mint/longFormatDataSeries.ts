@@ -1,6 +1,9 @@
 import {computed} from "@vue/composition-api";
 import {LongFormatSeriesMetadata, SeriesDefinition, SeriesMetadata, WideFormatSeriesMetadata} from "./fakeAPIData";
 import {FilteringProps, useFiltering} from "./filteredData";
+import {Dictionary} from "vuex";
+import {useTransformation} from "./tranformedData";
+import {def} from "@vue/composition-api/dist/utils";
 
 interface Props extends FilteringProps {
     series: SeriesDefinition[]
@@ -8,17 +11,33 @@ interface Props extends FilteringProps {
 }
 
 export function useLongFormatData(props: Props) {
-    const {filteredData} = useFiltering(props)
+    let settings = props.settings;
+    if (props.metadata.settings) {
+        // filter to those settings specified in the metadata
+        settings = props.metadata.settings
+            .reduce((acc: Dictionary<string>, value: string) => {
+                acc[value] = props.settings[value];
+                return acc
+            }, {} as Dictionary<string>)
+    }
+
+    const {filteredData} = useFiltering({...props, settings});
+    const {evaluateFormula} = useTransformation(props);
     const getRows = (definition: SeriesDefinition) => {
         const x = [] as any[];
-        const y = [] as any[];
+        let y = [] as any[];
         const meta = props.metadata as LongFormatSeriesMetadata
         filteredData.value.map((row: any) => {
             if (row[meta.id_col] == definition.id) {
-                x.push(row[meta.x_col])
-                y.push(row[meta.y_col])
+                x.push(row[meta.x_col]);
+                if (meta.y_col) {
+                    y.push(row[meta.y_col])
+                }
             }
         });
+        if (definition.y_formula){
+            y = definition.y_formula.map(evaluateFormula);
+        }
         return [x, y]
     }
 
@@ -36,6 +55,7 @@ export function useLongFormatData(props: Props) {
                     y: rows[1]
                 }
             }
+
             // ignore invalid definitions
             return null
         });

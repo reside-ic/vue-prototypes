@@ -160,6 +160,46 @@ export const wideData = [
         "cases_averted": 75,
         "cases_averted_high": 80,
         "cases_averted_low": 60,
+    },
+    {
+        "intervention": "IRS + ITN",
+        "net_use": 0.2,
+        "prev_year_1": 7.32,
+        "prev_year_2": 7.34,
+        "prev_year_3": 7.48,
+        "cases_averted": 70,
+        "cases_averted_high": 72,
+        "cases_averted_low": 60,
+    },
+    {
+        "intervention": "IRS + ITN",
+        "net_use": 0.4,
+        "prev_year_1": 6.32,
+        "prev_year_2": 6.34,
+        "prev_year_3": 6.48,
+        "cases_averted": 70,
+        "cases_averted_high": 72,
+        "cases_averted_low": 60,
+    },
+    {
+        "intervention": "IRS + ITN",
+        "net_use": 0.6,
+        "prev_year_1": 5.32,
+        "prev_year_2": 5.34,
+        "prev_year_3": 5.48,
+        "cases_averted": 74,
+        "cases_averted_high": 80,
+        "cases_averted_low": 60,
+    },
+    {
+        "intervention": "IRS + ITN",
+        "net_use": 0.8,
+        "prev_year_1": 4.32,
+        "prev_year_2": 4.34,
+        "prev_year_3": 4.48,
+        "cases_averted": 75,
+        "cases_averted_high": 80,
+        "cases_averted_low": 60,
     }
 ];
 
@@ -173,31 +213,31 @@ export const columns =
         "cases_averted": "Cases averted across 3 yrs since intervention",
         "cases_averted_high": "Upper bound for cases averted",
         "cases_averted_low": "Lower bound for cases averted"
-    }
+    };
 
 export interface SeriesDefinition {
     x?: any[]
     y?: any[],
-    y_col?: string,
-    x_col?: string,
+    y_formula?: string[],
     id?: string,
-    id_col?: string,
     name?: string,
     type?: string
     [propName: string]: any;
 }
 
 export interface LongFormatSeriesMetadata {
-    y_col: string,
+    y_col?: string,
     x_col: string,
     id_col: string
     format: "long"
+    settings?: string[];
 }
 
 export interface WideFormatSeriesMetadata {
     cols: string[],
     id_col: string
     format: "wide"
+    settings?: string[];
 }
 
 export type SeriesMetadata = LongFormatSeriesMetadata | WideFormatSeriesMetadata
@@ -214,7 +254,8 @@ export const prevGraph: GraphDefinition = {
         x_col: "month",
         y_col: "value",
         id_col: "intervention",
-        format: "long"
+        format: "long",
+        settings: ["irs_use", "net_use"]
     },
     series: [
         {
@@ -284,12 +325,51 @@ export const prevGraph: GraphDefinition = {
     }
 };
 
+export const costGraph: GraphDefinition = {
+    metadata: {
+        x_col: "cases_averted",
+        id_col: "intervention",
+        format: "long",
+        settings: ["irs_use", "net_use"]
+    },
+    series: [
+        {
+            id: "ITN",
+            y_formula: ["({population} / {procure_people_per_net}) * {price_net_standard}  + ({price_delivery} * {population} * (({procure_buffer} + 100)/ 100))"],
+            name: "Pyrethoid ITN",
+            type: "scatter",
+            marker: {color: "blue"}
+        },
+        {
+            id: "IRS + ITN",
+            y_formula: ["({population} / {procure_people_per_net}) * {price_net_standard} + ({price_delivery} * {population} * (({procure_buffer} + 100) / 100)) + 3 * ({price_irs_per_person} * {population})"],
+            name: "Add IRS to Pyrethoid ITN",
+            type: "scatter",
+            marker: {color: "darkred"}
+        }
+    ],
+    layout: {
+        title: "Cost effectiveness",
+        xaxis: {
+            title: 'Cases averted',
+            showline: true,
+            autorange: true
+        },
+        yaxis: {
+            title: 'Cost',
+            showline: true,
+            autorange: true
+        }
+    }
+};
+
 export const casesAvertedGraph: GraphDefinition =
     {
         metadata: {
             cols: ["cases_averted"],
             id_col: "intervention",
-            format: "wide"
+            format: "wide",
+            settings: ["irs_use", "net_use"]
         },
         series: [
             {
@@ -393,5 +473,49 @@ export const settings = [
             {value: 0.9, label: "90%"},
             {value: 1, label: "100%"}
         ]
+    },
+    {
+        "id": "population",
+        "label": "Population Size",
+        "type": "number",
+        "required": true,
+        "value": 1000,
+        "min": 1,
+        "max": 1e7
+    },
+    {
+        "id": "procure_people_per_net",
+        "label": "When planning procurement, what number of people per net is used?",
+        "type": "number",
+        "required": true,
+        "value": 1.8
+    },
+    {
+        "id": "procure_buffer",
+        "label": "What percentage is your procurement buffer, if used? (%)",
+        "type": "number",
+        "required": true,
+        "value": 7
+    },
+    {
+        "id": "price_net_standard",
+        "label": "Price of standard ITN ($USD)",
+        "type": "number",
+        "required": true,
+        "value": 1.5
+    },
+    {
+        "id": "price_irs_per_person",
+        "label": "Annual cost of IRS per person ($USD)",
+        "type": "number",
+        "required": true,
+        "value": 2.5
+    },
+    {
+        "id": "price_delivery",
+        "label": "ITN mass distribution campaign delivery cost per person ($USD)",
+        "type": "number",
+        "required": true,
+        "value": 2.75
     }
 ];

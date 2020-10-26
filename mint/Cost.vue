@@ -14,41 +14,27 @@
             </div>
         </div>
         <div class="my-5">
-            <plotly-graph :data="longData"
-                          :settings="selectedSettings"
-                          :metadata="prevalence.metadata"
-                          :series="prevalence.series"
-                          :layout="prevalence.layout"></plotly-graph>
-        </div>
-        <div class="my-5">
             <plotly-graph :data="wideData"
                           :settings="selectedSettings"
-                          :metadata="cases.metadata"
-                          :series="cases.series"
-                          :layout="cases.layout"></plotly-graph>
-        </div>
-        <div class="my-5">
-            <impact-table :columns="columns" :data="wideData" :settings="selectedSettings"></impact-table>
+                          :metadata="cost.metadata"
+                          :series="cost.series"
+                          :layout="cost.layout"></plotly-graph>
         </div>
     </div>
 </template>
 <script lang="ts">
 
     import Vue from "vue";
-    import ImpactTable from "./ImpactTable.vue";
-    import {casesAvertedGraph, columns, prevGraph, settings, wideData} from "./fakeAPIData";
+    import {costGraph, settings, wideData} from "./fakeAPIData";
     import PlotlyGraph from "./PlotlyGraph.vue";
 
     export default Vue.extend({
-        components: {PlotlyGraph, ImpactTable},
+        components: {PlotlyGraph},
         data() {
             return {
                 settings: settings,
-                columns: columns,
                 wideData: wideData,
-                longData: [] as any[],
-                prevalence: prevGraph,
-                cases: casesAvertedGraph
+                cost: costGraph
             }
         },
         computed: {
@@ -59,14 +45,6 @@
                 });
                 return result;
             }
-        },
-        created() {
-            const self = this;
-            fetch("data.json")
-                .then(response => response.json())
-                .then(data => self.longData = Object.freeze(data))
-
         }
-    })
-
+    });
 </script>
