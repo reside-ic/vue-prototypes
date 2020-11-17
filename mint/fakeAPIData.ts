@@ -217,9 +217,13 @@ export const tableConfig: ColumnDefinition[] =
                 "IRS + ITN": "'display name for IRS + ITN'"
             }
         },
-        {displayName: "Net use", valueCol: "net_use"},
         {
-            displayName: "Prevalence Under 5 yrs: Yr 1 post intervention", valueCol: "prev_year_1",
+            displayName: "Net use",
+            valueCol: "net_use"
+        },
+        {
+            displayName: "Prevalence Under 5 yrs: Yr 1 post intervention",
+            valueCol: "prev_year_1",
             format: "0.0"
         },
         {
