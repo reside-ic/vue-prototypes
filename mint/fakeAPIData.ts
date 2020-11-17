@@ -1,4 +1,6 @@
 // this is the table data that would be returned after the baseline inputs are set
+import {Dictionary} from "vuex";
+
 export const wideData = [
     {
         "intervention": "none",
@@ -203,17 +205,28 @@ export const wideData = [
     }
 ];
 
-export const columns =
-    {
-        "intervention": "Intervention",
-        "net_use": "Net use",
-        "prev_year_1": "Prevalence Under 5 yrs: Yr 1 post intervention",
-        "prev_year_2": "Prevalence Under 5 yrs: Yr 2 post intervention",
-        "prev_year_3": "Prevalence Under 5 yrs: Yr 3 post intervention",
-        "cases_averted": "Cases averted across 3 yrs since intervention",
-        "cases_averted_high": "Upper bound for cases averted",
-        "cases_averted_low": "Lower bound for cases averted"
-    };
+export const tableConfig: ColumnDefinition[] =
+    [
+        {displayName: "Intervention", valueCol: "intervention"},
+        {displayName: "Net use", valueCol: "net_use"},
+        {displayName: "Prevalence Under 5 yrs: Yr 1 post intervention", valueCol: "prev_year_1"},
+        {
+            displayName: "Total costs",
+            valueCol: "intervention",
+            valueFormula: {
+                "none": "({population} / {procure_people_per_net}) * {price_net_standard}",
+                "ITN": "({population} / {procure_people_per_net}) * {price_net_standard}  + ({price_delivery} * {population} * (({procure_buffer} + 100)/ 100))",
+                "IRS": "({population} / {procure_people_per_net}) * {price_net_standard} + 3 * ({price_irs_per_person} * {population})",
+                "IRS + ITN": "({population} / {procure_people_per_net}) * {price_net_standard} + ({price_delivery} * {population} * (({procure_buffer} + 100) / 100)) + 3 * ({price_irs_per_person} * {population})"
+            }
+        }
+    ];
+
+export interface ColumnDefinition {
+    displayName: string
+    valueCol: string
+    valueFormula?: Dictionary<string>
+}
 
 export interface SeriesDefinition {
     x?: any[]
@@ -222,6 +235,7 @@ export interface SeriesDefinition {
     id?: string,
     name?: string,
     type?: string
+
     [propName: string]: any;
 }
 

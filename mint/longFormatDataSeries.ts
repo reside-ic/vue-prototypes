@@ -3,7 +3,6 @@ import {LongFormatSeriesMetadata, SeriesDefinition, SeriesMetadata, WideFormatSe
 import {FilteringProps, useFiltering} from "./filteredData";
 import {Dictionary} from "vuex";
 import {useTransformation} from "./tranformedData";
-import {def} from "@vue/composition-api/dist/utils";
 
 interface Props extends FilteringProps {
     series: SeriesDefinition[]
