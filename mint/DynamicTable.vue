@@ -19,6 +19,7 @@
     import {FilteringProps, useFiltering} from "./filteredData";
     import {ColumnDefinition} from "./fakeAPIData";
     import {useTransformation} from "./tranformedData";
+    import numeral from "numeral";
 
     interface Props extends FilteringProps {
         config: ColumnDefinition[]
@@ -30,12 +31,16 @@
             const {filteredData} = useFiltering(props);
             const {evaluateFormula} = useTransformation(props);
             const evaluateCell = (col: ColumnDefinition, row: any) => {
-                if (!col.valueFormula) {
-                    return row[col.valueCol]
+                let value = "";
+                if (!col.valueTransform) {
+                    value = row[col.valueCol]
+                } else if (col.valueTransform[row[col.valueCol]]) {
+                    value = evaluateFormula(col.valueTransform[row[col.valueCol]])
                 }
-                if (col.valueFormula[row[col.valueCol]]) {
-                    return evaluateFormula(col.valueFormula[row[col.valueCol]])
-                } else return "";
+                if (col.format) {
+                    value = numeral(value).format(col.format)
+                }
+                return value;
             };
             return {
                 filteredData,

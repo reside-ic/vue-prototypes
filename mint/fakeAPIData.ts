@@ -207,25 +207,39 @@ export const wideData = [
 
 export const tableConfig: ColumnDefinition[] =
     [
-        {displayName: "Intervention", valueCol: "intervention"},
+        {
+            displayName: "Intervention",
+            valueCol: "intervention",
+            valueTransform: {
+                "none": "'none'",
+                "ITN": "'display name for ITN'",
+                "IRS": "'display name for IRS'",
+                "IRS + ITN": "'display name for IRS + ITN'"
+            }
+        },
         {displayName: "Net use", valueCol: "net_use"},
-        {displayName: "Prevalence Under 5 yrs: Yr 1 post intervention", valueCol: "prev_year_1"},
+        {
+            displayName: "Prevalence Under 5 yrs: Yr 1 post intervention", valueCol: "prev_year_1",
+            format: "0.0"
+        },
         {
             displayName: "Total costs",
             valueCol: "intervention",
-            valueFormula: {
+            valueTransform: {
                 "none": "({population} / {procure_people_per_net}) * {price_net_standard}",
                 "ITN": "({population} / {procure_people_per_net}) * {price_net_standard}  + ({price_delivery} * {population} * (({procure_buffer} + 100)/ 100))",
                 "IRS": "({population} / {procure_people_per_net}) * {price_net_standard} + 3 * ({price_irs_per_person} * {population})",
                 "IRS + ITN": "({population} / {procure_people_per_net}) * {price_net_standard} + ({price_delivery} * {population} * (({procure_buffer} + 100) / 100)) + 3 * ({price_irs_per_person} * {population})"
-            }
+            },
+            format: "0.00"
         }
     ];
 
 export interface ColumnDefinition {
     displayName: string
     valueCol: string
-    valueFormula?: Dictionary<string>
+    valueTransform?: Dictionary<string>
+    format?: string
 }
 
 export interface SeriesDefinition {
