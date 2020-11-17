@@ -28,23 +28,23 @@
                           :layout="cases.layout"></plotly-graph>
         </div>
         <div class="my-5">
-            <impact-table :columns="columns" :data="wideData" :settings="selectedSettings"></impact-table>
+            <dynamic-table :config="tableConfig" :data="wideData" :settings="selectedSettings"></dynamic-table>
         </div>
     </div>
 </template>
 <script lang="ts">
 
     import Vue from "vue";
-    import ImpactTable from "./ImpactTable.vue";
-    import {casesAvertedGraph, columns, prevGraph, settings, wideData} from "./fakeAPIData";
+    import DynamicTable from "./DynamicTable.vue";
+    import {casesAvertedGraph, prevGraph, settings, tableConfig, wideData} from "./fakeAPIData";
     import PlotlyGraph from "./PlotlyGraph.vue";
 
     export default Vue.extend({
-        components: {PlotlyGraph, ImpactTable},
+        components: {PlotlyGraph, DynamicTable},
         data() {
             return {
                 settings: settings,
-                columns: columns,
+                tableConfig: tableConfig,
                 wideData: wideData,
                 longData: [] as any[],
                 prevalence: prevGraph,
