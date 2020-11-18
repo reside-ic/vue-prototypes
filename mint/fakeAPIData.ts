@@ -212,9 +212,10 @@ export const tableConfig: ColumnDefinition[] =
             valueCol: "intervention",
             valueTransform: {
                 "none": "'none'",
-                "ITN": "'display name for ITN'",
-                "IRS": "'display name for IRS'",
-                "IRS + ITN": "'display name for IRS + ITN'"
+                "ITN": "'display ITN'",
+                "IRS": "'display IRS'",
+                "PBO": "'PBO'",
+                "IRS + ITN": "'IRS + ITN'"
             }
         },
         {
@@ -222,9 +223,8 @@ export const tableConfig: ColumnDefinition[] =
             valueCol: "net_use"
         },
         {
-            displayName: "Prevalence Under 5 yrs: Yr 1 post intervention",
-            valueCol: "prev_year_1",
-            format: "0.0"
+            displayName: "Cases averted",
+            valueCol: "cases_averted"
         },
         {
             displayName: "Total costs",
@@ -235,7 +235,30 @@ export const tableConfig: ColumnDefinition[] =
                 "IRS": "({population} / {procure_people_per_net}) * {price_net_standard} + 3 * ({price_irs_per_person} * {population})",
                 "IRS + ITN": "({population} / {procure_people_per_net}) * {price_net_standard} + ({price_delivery} * {population} * (({procure_buffer} + 100) / 100)) + 3 * ({price_irs_per_person} * {population})"
             },
-            format: "0.00"
+            format: "$0[.][00]a",
+            precision: 4
+        },
+        {
+            displayName: "Incremental increase in cost",
+            valueCol: "intervention",
+            valueTransform: {
+                "none": "0",
+                "ITN": "({population} / {procure_people_per_net}) * {price_net_standard}  + ({price_delivery} * {population} * (({procure_buffer} + 100)/ 100)) - (({population} / {procure_people_per_net}) * {price_net_standard})",
+                "IRS": "({population} / {procure_people_per_net}) * {price_net_standard} + 3 * ({price_irs_per_person} * {population}) - (({population} / {procure_people_per_net}) * {price_net_standard})",
+                "IRS + ITN": "({population} / {procure_people_per_net}) * {price_net_standard} + ({price_delivery} * {population} * (({procure_buffer} + 100) / 100)) + 3 * ({price_irs_per_person} * {population}) - (({population} / {procure_people_per_net}) * {price_net_standard})"
+            },
+            format: "$0[.][00]a",
+            precision: 4
+        },
+        {
+            displayName: "Cost per case averted",
+            valueCol: "intervention",
+            valueTransform: {
+                "none": "'reference'",
+                "ITN": "(({population} / {procure_people_per_net}) * {price_net_standard}  + ({price_delivery} * {population} * (({procure_buffer} + 100)/ 100)))/{cases_averted}",
+                "IRS": "(({population} / {procure_people_per_net}) * {price_net_standard} + 3 * ({price_irs_per_person} * {population}))/{cases_averted}"
+            },
+            format: "$0.00"
         }
     ];
 
@@ -244,6 +267,7 @@ export interface ColumnDefinition {
     valueCol: string
     valueTransform?: Dictionary<string>
     format?: string
+    precision?: number
 }
 
 export interface SeriesDefinition {

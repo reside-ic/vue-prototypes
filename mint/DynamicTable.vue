@@ -1,5 +1,5 @@
 <template>
-    <table>
+    <table class="table table-striped dataTable">
         <thead>
         <tr>
             <th v-for="col in config">{{col.displayName}}</th>
@@ -31,11 +31,20 @@
             const {filteredData} = useFiltering(props);
             const {evaluateFormula} = useTransformation(props);
             const evaluateCell = (col: ColumnDefinition, row: any) => {
-                let value = "";
+                let value: string | number = "";
                 if (!col.valueTransform) {
                     value = row[col.valueCol]
                 } else if (col.valueTransform[row[col.valueCol]]) {
-                    value = evaluateFormula(col.valueTransform[row[col.valueCol]])
+                    value = evaluateFormula(col.valueTransform[row[col.valueCol]], row)
+                }
+                if (value == Infinity){
+                    return "n/a";
+                }
+                if (typeof value == "string"){
+                    return value;
+                }
+                if (col.precision){
+                    value = value.toPrecision(col.precision)
                 }
                 if (col.format) {
                     value = numeral(value).format(col.format)
